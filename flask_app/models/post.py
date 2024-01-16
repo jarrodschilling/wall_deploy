@@ -26,7 +26,7 @@ class Post:
                 LEFT JOIN users AS commers ON commers.id = comments.user_id
                 ORDER BY posts.created_at DESC;"""
         results = connectToMySQL(cls.db).query_db(query)
-        # print(results)
+        
         posts = []
         for row in results:
             if not posts or posts[-1].id != row['id']:
@@ -65,7 +65,7 @@ class Post:
                 a_comment = comment.Comment(comment_data)
                 a_comment.user = user.User(commer_data)
                 new_post.comments.append(a_comment)
-        print(posts[0].comments[0].user.first_name)
+        
         return posts
     
     @classmethod

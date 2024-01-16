@@ -39,7 +39,7 @@ def register():
     if not User.validate_user(request.form):
         return redirect('/')
     pw_hash = bcrypt.generate_password_hash(request.form.get('password'))
-    print(pw_hash)
+    
     data = {
         "first_name": request.form.get('first_name'),
         "last_name": request.form.get('last_name'),
@@ -49,5 +49,5 @@ def register():
     user_id = User.save(data)
     session['user_id'] = user_id
     session['first_name'] = data['first_name']
-    print(user_id)
+    
     return redirect('/wall')
